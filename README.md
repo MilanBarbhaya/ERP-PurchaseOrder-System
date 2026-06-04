@@ -52,3 +52,8 @@ Implemented URL versioning: /api/v1/purchase-orders and /api/v2/purchase-orders
 **What I Would Do Differently With More Time**
 Add audit logs, pagination, Angular Material UI, Docker, CI/CD, caching, refresh tokens.
 
+**Note:**
+-) May be pages will not refresh after some activity for create or update purchase order, i have applied few things for reload change after activity but not worked
+-) i tried to remove all the console log but still appears and i tried all the things like browser cache remove, in vs code : angular folder delete and restore and few other things related caching but not able to resolve cache issue. but you can't find console logs inside code i have done, also remove unneccessary codes and all the things
+-) tried all the things as much as i can
+-) BONUS (OPTIONAL — NOT REQUIRED) : •	API versioning (e.g., /API/v1/purchase-orders)**(done)**
