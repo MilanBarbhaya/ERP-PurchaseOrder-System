@@ -1,0 +1,102 @@
+<div class="page-links">
+
+  <a href="/purchase-orders">
+    Purchase-Orders
+  </a>
+
+  |
+
+  <a href="/purchase-orders/create">
+    Create Purchase Order
+  </a>
+
+</div>
+
+<div class="po-form-container">
+
+  <div class="po-form-card">
+
+    <h2 class="title">Create Purchase Order</h2>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+
+      <!-- Vendor -->
+      <div class="form-group">
+        <label>Vendor Name</label>
+        <input type="text" formControlName="vendorName" placeholder="Enter vendor name">
+      </div>
+      <div
+        *ngIf="
+          form.get('vendorName')?.invalid &&
+          form.get('vendorName')?.touched
+        "
+        class="error">
+
+        Vendor Name is required
+
+      </div>
+      <!-- Department -->
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text" formControlName="department" placeholder="Enter department">
+      </div>
+<div
+        *ngIf="
+          form.get('department')?.invalid &&
+          form.get('department')?.touched
+        "
+        class="error">
+          
+        Department is required
+          
+      </div>
+      <hr>
+
+      <h3>Line Items</h3>
+
+      <!-- ADD ITEM BUTTON -->
+      <button type="button" class="add-btn" (click)="addItem()">
+        + Add Item
+      </button>
+
+      <!-- LINE ITEMS -->
+      <div formArrayName="lineItems">
+
+        <div
+          class="line-item"
+          *ngFor="let item of lineItems.controls; let i = index"
+          [formGroupName]="i">
+
+          <input
+            type="text"
+            formControlName="productName"
+            placeholder="Product">
+
+          <input
+            type="number"
+            formControlName="quantity"
+            placeholder="Qty">
+
+          <input
+            type="number"
+            formControlName="unitPrice"
+            placeholder="Unit Price">
+
+          <button type="button" class="remove-btn" (click)="removeItem(i)">
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="save-btn">
+        Save Purchase Order
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,85 @@
+<div class="po-container">
+
+  <div class="po-card">
+
+    <h2 class="title">Purchase Orders</h2>
+
+    <div class="top-bar">
+      <a routerLink="/purchase-orders/create" class="create-btn">
+        + Create Purchase Order
+      </a>
+    </div>
+
+    <hr>
+
+    <!-- FILTER SECTION -->
+    <h3>Filter Orders</h3>
+
+    <div class="filter-buttons">
+
+      <button (click)="setStatus('')">All</button>
+      <button (click)="setStatus('1')">Draft</button>
+      <button (click)="setStatus('2')">Submitted</button>
+      <button (click)="setStatus('3')">Approved</button>
+      <button (click)="setStatus('4')">Rejected</button>
+
+    </div>
+
+    <br>
+
+    <input
+      type="text"
+      placeholder="Search PO Number or Vendor"
+      (input)="setSearch($event)"
+      class="search-box">
+
+    <div class="info">
+      <p>Current Status: {{ statusFilter() }}</p>
+      <p>Search: {{ searchFilter() }}</p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+<div *ngIf="loading" class="loading">
+  Loading purchase orders...
+</div>
+
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>PO Number</th>
+            <th>Vendor</th>
+            <th>Department</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let po of filteredPurchaseOrders">
+
+            <td>{{ po.poNumber }}</td>
+            <td>{{ po.vendorName }}</td>
+            <td>{{ po.department }}</td>
+            <td>{{ po.totalAmount }}</td>
+            <td>{{ po.status }}</td>
+
+            <td>
+              <a [routerLink]="['/purchase-orders', po.id]" class="view-link">
+                View
+              </a>
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

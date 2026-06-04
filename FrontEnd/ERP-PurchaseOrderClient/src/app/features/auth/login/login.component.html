@@ -1,0 +1,37 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2 class="title">ERP Login</h2>
+    <p class="subtitle">Please sign in to continue</p>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <!-- Username -->
+      <div class="form-group">
+        <label>Username</label>
+        <input
+          type="text"
+          formControlName="username"
+          placeholder="Enter username">
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Enter password">
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

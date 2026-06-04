@@ -1,0 +1,154 @@
+<div class="page-links">
+
+  <a href="/purchase-orders">
+    Purchase-Orders
+  </a>
+
+  |
+
+  <a href="/purchase-orders/create">
+    Create Purchase Order
+  </a>
+
+</div>
+
+<div class="po-detail-container">
+
+  <div class="po-detail-card">
+
+    <!-- LOADING -->
+    <div *ngIf="loading" class="loading">
+      Loading Purchase Order...
+    </div>
+
+    <!-- DATA -->
+    <div *ngIf="!loading && purchaseOrder">
+
+      <h2 class="title">Purchase Order Detail</h2>
+
+      <!-- VIEW MODE -->
+      <div *ngIf="!isEditMode" class="view-section">
+
+        <p><b>PO Number:</b> {{ purchaseOrder.poNumber }}</p>
+        <p><b>Vendor:</b> {{ purchaseOrder.vendorName }}</p>
+        <p><b>Department:</b> {{ purchaseOrder.department }}</p>
+        <p><b>Status:</b> {{ getStatusText(purchaseOrder.status) }}</p>
+
+        <!-- <button class="edit-btn" *ngIf="!isEditMode" (click)="enableEdit()">
+          Edit
+        </button> -->
+
+      </div>
+
+      <!-- EDIT MODE -->
+     <form [formGroup]="editForm">
+
+  <input
+    formControlName="vendorName"
+    placeholder="Vendor Name" [(ngModel)]="purchaseOrder.vendorName" *ngIf="
+      role === 'ProcurementOfficer' &&
+      purchaseOrder?.status === 1">
+
+  <div
+    class="error"
+    *ngIf="
+      editForm.get('vendorName')?.invalid &&
+      editForm.get('vendorName')?.touched">
+
+    Vendor Name is required
+
+  </div>
+
+  <input
+    formControlName="department"
+    placeholder="Department" [(ngModel)]="purchaseOrder.department" *ngIf="
+      role === 'ProcurementOfficer' &&
+      purchaseOrder?.status === 1">
+
+  <div
+    class="error"
+    *ngIf="
+      editForm.get('department')?.invalid &&
+      editForm.get('department')?.touched">
+
+    Department is required
+
+  </div>
+
+  <button
+    type="button"
+    (click)="saveEdit()"   *ngIf="
+      role === 'ProcurementOfficer' &&
+      purchaseOrder?.status === 1">
+
+    Save
+
+  </button>
+
+</form>
+
+      <hr>
+
+      <!-- LINE ITEMS -->
+      <h3>Items</h3>
+
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of purchaseOrder.lineItems">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <br>
+
+      <!-- ACTION BUTTONS -->
+      <div *ngIf="!isEditMode" class="actions">
+
+        <button
+          class="edit-btn"
+          *ngIf="purchaseOrder.status === 1"
+          (click)="enableEdit()">
+          Edit
+        </button>
+
+        <button
+          class="submit-btn"
+          *ngIf="role === 'ProcurementOfficer' && purchaseOrder.status === 1"
+          (click)="submit()">
+          Submit
+        </button>
+
+        <button
+          class="approve-btn"
+          *ngIf="role === 'FinanceManager' && purchaseOrder.status === 2"
+          (click)="approve()">
+          Approve
+        </button>
+
+        <button
+          class="reject-btn"
+          *ngIf="role === 'FinanceManager' && purchaseOrder.status === 2"
+          (click)="reject()">
+          Reject
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
