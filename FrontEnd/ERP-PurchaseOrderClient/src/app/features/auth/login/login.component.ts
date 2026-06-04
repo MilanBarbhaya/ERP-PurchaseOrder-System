@@ -23,11 +23,10 @@ export class LoginComponent {
   });
 
 test(){
-     console.log('Login Clicked');
+     console.log('');
 }
 
   login() {
-     console.log('Login Clicked');
 
     this.authService
       .login(this.form.value)

@@ -65,7 +65,6 @@ this.loading = true;
   }
 
   setSearch(event: Event) {
-console.log("setSearch");
    const value =
     (event.target as HTMLInputElement).value;
 
