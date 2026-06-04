@@ -43,7 +43,11 @@ private service =
 
 private router =
   inject(Router);
-
+  
+  role =
+    localStorage.getItem(
+      'role'
+    );
   form = this.fb.group({
 
   vendorName: [

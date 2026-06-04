@@ -1,4 +1,5 @@
-﻿using ERP.Application.Interfaces;
+﻿using Asp.Versioning;
+using ERP.Application.Interfaces;
 using ERP.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
 using ERP.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 using ERP.Application.PurchaseOrders.Commands.GetPurchaseOrder;
@@ -9,10 +10,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ERP.API.Controllers
+namespace ERP.API.Controllers.V1
 {
     [ApiController]
-    [Route("api/purchase-orders")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/purchase-orders")]
     public class PurchaseOrdersController
     : ControllerBase
     {
@@ -34,11 +36,13 @@ namespace ERP.API.Controllers
             var id =
                 await _mediator.Send(command);
 
-            return CreatedAtAction(
-                nameof(Create),
-                new { id },
-                id);
+
+            return Ok(new
+            {
+                Id = id
+            });
         }
+
         [Authorize(Roles = "ProcurementOfficer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody]
@@ -54,6 +58,8 @@ namespace ERP.API.Controllers
                 Id = result
             });
         }
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll(string? status,string? search)
         {
@@ -65,6 +71,7 @@ namespace ERP.API.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {

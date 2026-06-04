@@ -4,10 +4,8 @@
     Purchase-Orders
   </a>
 
-  |
-
-  <a href="/purchase-orders/create">
-    Create Purchase Order
+  <a href="/purchase-orders/create" *ngIf="role === 'ProcurementOfficer'">
+    | Create Purchase Order
   </a>
 
 </div>

@@ -193,9 +193,9 @@
 <a href="/purchase-orders">
     Purchase Orders
   </a>
-   |
-  <a href="/purchase-orders/create">
-    Create PO
+   
+  <a href="/purchase-orders/create" *ngIf="role === 'ProcurementOfficer'">
+    | Create PO
   </a>
   </div>
   <div class="nav-right">

@@ -30,7 +30,10 @@ export class PoListComponent implements OnInit{
   errorMessage = '';
   private cdr = inject(ChangeDetectorRef);
 statusFilter = statusFilter;
-
+role =
+    localStorage.getItem(
+      'role'
+    );
 searchFilter = searchFilter;
   private service =
     inject(PurchaseOrderService);
@@ -90,11 +93,22 @@ applyFilters(): void {
         !search ||
         po.vendorName
           .toLowerCase()
+          .includes(search)||
+        po.poNumber
+          .toLowerCase()
           .includes(search);
 
       return statusMatch &&
              searchMatch;
     });
 }
- 
+  getStatusText(status: number): string {
+  switch (status) {
+    case 1: return 'Draft';
+    case 2: return 'Submitted';
+    case 3: return 'Approved';
+    case 4: return 'Rejected';
+    default: return '';
+  }
+}
 }

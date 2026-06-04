@@ -57,7 +57,7 @@ describe(
 
         const req =
           httpMock.expectOne(
-            'http://localhost:5237/api/purchase-orders'
+            'http://localhost:5237/api/v1/purchase-orders'
           );
 
         expect(

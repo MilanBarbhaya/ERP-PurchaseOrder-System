@@ -3,7 +3,7 @@ using ERP.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace ERP.API.Controllers
+namespace ERP.API.Controllers.V1
 {
     [ApiController]
     [Route("api/[controller]")]

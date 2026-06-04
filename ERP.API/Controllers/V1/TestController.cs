@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ERP.API.Controllers
+namespace ERP.API.Controllers.V1
 {
     [ApiController]
     [Route("api/test")]

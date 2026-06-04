@@ -4,7 +4,7 @@
 
     <h2 class="title">Purchase Orders</h2>
 
-    <div class="top-bar">
+    <div class="top-bar" *ngIf="role === 'ProcurementOfficer'">
       <a routerLink="/purchase-orders/create" class="create-btn">
         + Create Purchase Order
       </a>
@@ -65,7 +65,7 @@
             <td>{{ po.vendorName }}</td>
             <td>{{ po.department }}</td>
             <td>{{ po.totalAmount }}</td>
-            <td>{{ po.status }}</td>
+            <td>{{getStatusText(po.status)}}</td>
 
             <td>
               <a [routerLink]="['/purchase-orders', po.id]" class="view-link">

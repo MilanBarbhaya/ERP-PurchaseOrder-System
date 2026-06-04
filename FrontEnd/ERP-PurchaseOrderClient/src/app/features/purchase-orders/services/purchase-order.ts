@@ -11,7 +11,7 @@ export class PurchaseOrderService {
   private http = inject(HttpClient);
 
   private apiUrl =
-    'http://localhost:5237/api/purchaseorders';
+    'http://localhost:5237/api/v1/purchaseorders';
 
   getAll() {
     return this.http.get<PurchaseOrder[]>(
