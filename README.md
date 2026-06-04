@@ -1,8 +1,8 @@
 **ERP Purchase Order Management System**
 
-T**Technology Stack**
+**Technology Stack**
 Backend: ASP.NET Core 9, MediatR, FluentValidation, JWT
-Frontend: Angular 20
+Frontend: Angular 21
 Database: MongoDB
 
 **Key Architectural Decisions**
@@ -14,7 +14,7 @@ ERP-> FrontEnd/ERP-PurchaseOrderClient
 
 **How To Run Locally**
 Install -> .NET 9 SDK, Node.js, Angular CLI, MongoDB. 
-Run backend using dotnet run and frontend using ng serve.
+(Run backend using dotnet run/ just run api project in visual studio directly) and frontend using ng serve.
 
 **Test Credentials**
 **Procurement Officer**: procurement / Procurement@123 **-> Role:** ProcurementOfficer
@@ -36,6 +36,9 @@ Created ascending index on PoNumber because PO lookups and searches are commonly
 **Validation**
 Angular Reactive Forms + FluentValidation + MediatR Validation Pipeline.
 
+**Login and Authentication Handling**
+Frontend -> Angular Auth Interceptor & Login Interceptor used globally to send token and role to access API Methods after login.
+
 **Error Handling**
 Frontend -> Angular HTTP Interceptor.
 Backend -> Global Exception Middleware
@@ -44,7 +47,7 @@ Backend -> Global Exception Middleware
 xUnit backend tests **(Done)**, Angular service tests **(Done)**, Angular component tests **(not performed)**.
 
 **API Versioning**
-Implemented URL versioning: /api/v1/purchase-orders
+Implemented URL versioning: /api/v1/purchase-orders and /api/v2/purchase-orders
 
 **What I Would Do Differently With More Time**
 Add audit logs, pagination, Angular Material UI, Docker, CI/CD, caching, refresh tokens.
