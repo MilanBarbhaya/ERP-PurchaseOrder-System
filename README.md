@@ -53,6 +53,9 @@ Implemented URL versioning: /api/v1/purchase-orders and /api/v2/purchase-orders
 Add audit logs, pagination, Angular Material UI, Docker, CI/CD, caching, refresh tokens.
 
 **Note:**
+
+-) Start API Project in Visual Studio and Start Angular Project from VS Code(simultaneously work at same time for API calls and login and other po related stuff) 
+
 -) May be pages will not refresh after some activity for create or update purchase order, i have applied few things for reload change after activity but not worked
 
 -) i tried to remove all the console log but still appears and i tried all the things like browser cache remove, in vs code : angular folder delete and restore and few other things related caching but not able to resolve cache issue. but you can't find console logs inside code i have done, also remove unneccessary codes and all the things
